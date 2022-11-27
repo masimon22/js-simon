@@ -1,80 +1,93 @@
-// si la compra supera los 2000 pesos, se aplica un 10% de descuento
 
-let seguirComprando = true
-let totalCompra = 0
-let decision
-
-
-let nombre = prompt("Bienvenid@ a mi sitio de Attrezzos, cual es tu nombre?")
-let productoSeleccionado = parseInt(prompt(`Hola ${nombre} Escoge el producto que deseas comprar: 1.velas - 2.fanales - 3.sahumerios - 4.velones`))
-
-//agrego un array de productos
-const productosArray = []
-
+const productosArray = [];
 
 class Producto {
-    constructor(id, nombre, precio, stock) {
+    constructor(id, nombre, precio, stock, imagen) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.imagen = imagen;
     }
     restaStock() {
-                this.stock = this.stock - 1;
-                console.log(`El stock de ${this.nombre} ha sido actualizado`)
-            }
+        this.stock = this.stock - 1;
+        console.log(`El stock de ${this.nombre} ha sido actualizado`)
+    }
 
-}
+};
 
-const velas = new Producto(1, "velas", 500, 100);
+const velas = new Producto(1, "velas", 500, 100, src = "images/vela.jpg");
 productosArray.push(velas)
-const fanales = new Producto(2, "Fanales", 1000, 50);
+const fanales = new Producto(2, "difusor", 1000, 50, src = "images/difusor.jpg");
 productosArray.push(fanales)
-const sahumerios = new Producto(3, "Sahumerios", 800, 100);
+const sahumerios = new Producto(3, "Sahumerios", 800, 100, src = "images/sahumerio.jpg");
 productosArray.push(sahumerios)
-const velones = new Producto(4, "Velones", 1500, 50);
+const velones = new Producto(4, "maceta", 1500, 50, src = "images/maceta.jpg");
 productosArray.push(velones)
 
+// console.table(productosArray)
 
-const carrito = []
-while (isNaN(productoSeleccionado)) {
-            alert("Ingrese un número válido")
-            productoSeleccionado = parseInt(prompt("Escoge el producto que deseas comprar: 1.velas - 2.fanales - 3.sahumerios - 4.velones"))
+const divProductos = document.getElementById("divProductos");
+
+productosArray.forEach(producto => {
+    divProductos.innerHTML += `
+    <div id="${producto.id}" class="card cardProd" style="width: 18rem;">
+    <img src="${producto.imagen}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${producto.nombre}</h5>
+      <p class="card-text">$${producto.precio}.-</p>
+      <button id="${producto.id}" class="btn btn-primary">AGREGAR</button>
+    </div>
+  </div>
+
+`
+})
+let carrito
+const carritoStorage = JSON.parse(localStorage.getItem("carrito"))
+if (carritoStorage) {
+    carrito = carritoStorage
+} else {
+    carrito = []
+}
+
+const botonAgregar = document.querySelectorAll(".btn-primary")
+// console.log(botonAgregar);
+
+botonAgregar.forEach(boton => {
+    boton.onclick = () => {
+        const productoSeleccionado = productosArray.find(prod => prod.id === parseInt(boton.id))
+        
+        // console.log(productoSeleccionado);
+
+        const productoCarrito = { ...productoSeleccionado, cantidad: 1 };
+        // console.log(productoSeleccionado, productoCarrito);
+
+        const indexCarrito = carrito.findIndex(prod => prod.id === productoCarrito.id)
+        if (indexCarrito === -1) {
+            carrito.push(productoCarrito)
+
+
+        } else {
+            carrito[indexCarrito].cantidad++
         }
 
-while (seguirComprando === true) {
-    const producto = productosArray.find((prod) => prod.id === productoSeleccionado)
-    if (producto) {
-        carrito.push(producto)
-        producto.restaStock()
+        console.table(carrito)
+
+        localStorage.setItem("carrito", JSON.stringify(carrito))
     }
-    decision = parseInt(prompt("Quieres seguir comprando? 1.SI - 2.NO"))
-    if (decision === 1) {
-        productoSeleccionado = parseInt(prompt("Escoge el producto que deseas comprar: 1.velas - 2.fanales - 3.sahumerios - 4.velones"))
-    } else if (decision === 2){
-        seguirComprando = false
-        
-    } else {
-        alert("Ingrese un número válido")
-        
-    }
+})
 
-}
-carrito.forEach(producto => { totalCompra = totalCompra + producto.precio })
+const botonFinalizar = document.getElementById("finalizar");
+botonFinalizar.onclick = () => {
+    const valores = carrito.map(prod => prod.precio * prod.cantidad)
+    let totalCompra = 0
+    valores.forEach(valor => {
+        totalCompra += valor
+    })
+    console.log(totalCompra)
 
-console.table(carrito)
+    let valorCompra = `El total de tu compra es: $ ${totalCompra}.-`
 
-alert(`El total de tu compra es $${totalCompra}`)
+    console.log(valorCompra)
 
-function descuento(totalCompra) {
-    let resultado = totalCompra * 0.9
-    alert(`${nombre} Gracias por pensar en mis attrezzos para regalar-te. Te doy un 10% de descuento en tu compra y el total es $ ${resultado}`)
-}
-
-if (totalCompra >= 2000) {
-    descuento(totalCompra)
-
-} else {
-
-    alert(`${nombre} Gracias por pensar en mis attrezzos`)
-}
+}   

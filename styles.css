@@ -1,4 +1,14 @@
-.divProductos{
-    width: 18rem;
-    margin: 4px;
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boton .btn-success {
+    margin: 20px;
+
+}
+
+.cardProd {
+    margin: 5px;
 }
