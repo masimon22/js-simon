@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "nombre": "yeso",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v2n.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Ceramica",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v4n.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Fe",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v6n.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Ubud",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v7n.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Madrid",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v8n.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "Mini-Ubud",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v14n.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "Canang",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v16n.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "Pincel",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v18n.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Frascos",
+        "marca": "Attrezzo",
+        "modelo": "Api",
+        "precio": 1000,
+        "img": "v22n.jpg"
+    }
+]

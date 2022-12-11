@@ -1,3 +1,10 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
 header{
     display: flex;
     align-items: center;
@@ -9,6 +16,18 @@ header{
 
 }
 
-.cardProd {
+.cardProducto {
+    width: 18rem;
     margin: 5px;
+    
+}
+
+.carritoModal{
+    display: flex;
+
+}
+
+.parrafo{
+    font-weight: 700;
+    font-style: italic;
 }
