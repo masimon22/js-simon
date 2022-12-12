@@ -48,9 +48,7 @@ consultarProductos().then(productos => {
             } else {
                 carrito[indexCarrito].cantidad++
             }
-            console.table(carrito)
 
-            // localStorage.setItem("carrito", JSON.stringify(carrito))
 
             Toastify({
                 text: "Producto agregado al carrito",
@@ -80,7 +78,7 @@ if (carritoStorage) {
 } else {
     carrito = []
 }
-// console.log(productosArray)
+
 
 
 
@@ -89,10 +87,12 @@ const mostrarCarrito = () => {
     modalBody.innerHTML = ""
     carrito.forEach((prod) => {
         const { id, img, nombre, cantidad, precio } = prod
-        // console.log(prod)
+
         modalBody.innerHTML += `
         <div class="carritoModal">
-           
+            <div>
+                <img class="img-fluid img-carrito" src= "./images/${img}"/>
+            </div>
             <div>
                 <p>Producto: ${nombre} </p>
                 <p>precio: $${precio} </p>
@@ -116,7 +116,6 @@ const mostrarCarrito = () => {
 function eliminarProducto(id) {
     const carritoId = id
     carrito = carrito.filter((prod) => prod.id !== carritoId)
-    console.log(carrito)
     mostrarCarrito()
 }
 
@@ -173,10 +172,10 @@ botonFinalizar.onclick = () => {
         })
     } else {
         Swal.fire(`Gracias por tu compra, el total es: $ ${totalCompra}.-`)
-        localStorage.clear()
         carrito.length = []
 
     }
+
     mostrarCarrito()
 
 }

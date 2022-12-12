@@ -24,7 +24,13 @@ header{
 
 .carritoModal{
     display: flex;
+    align-items: center;
+    gap: 2rem;
 
+}
+.img-carrito{
+    width: 200px;
+    padding: 20px;
 }
 
 .parrafo{
