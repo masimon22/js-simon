@@ -10,6 +10,10 @@ header{
     align-items: center;
     justify-content: space-between;
 }
+.cabecera{
+    width: 100%;
+}
+
 
 .boton .btn-success {
     margin: 20px;
